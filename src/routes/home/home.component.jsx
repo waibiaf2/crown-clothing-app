@@ -34,7 +34,6 @@ const HomeComponent = () => {
     
     return (
         <div>
-            <Outlet/>
             <DirectoryComponent categories={categories}/>
         </div>
     
