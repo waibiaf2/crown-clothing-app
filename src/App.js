@@ -5,6 +5,8 @@ import ShopComponent from "./routes/shop/shop-component";
 import NavigationComponent from "./routes/navigation/navigation.component";
 import SingninComponent from "./routes/signin/singnin.component";
 
+import './App.scss'
+
 const App = () => {
     return (
         <Routes>

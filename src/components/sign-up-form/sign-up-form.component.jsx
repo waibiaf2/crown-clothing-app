@@ -55,6 +55,54 @@ const SignUpFormComponent = () => {
             <h2>Don't have an account?</h2>
             <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit}>
+                <FormInputComponent
+                    label="Display Name"
+                    inputOptions = {{
+                        type:"text",
+                        required:true,
+                        onChange:handleChange,
+                        name:displayName,
+                        value:displayName
+                    }}
+                />
+                
+                <FormInputComponent
+                    label="Email"
+                    inputOptions = {{
+                        type:"email",
+                        required:true,
+                        onChange:handleChange,
+                        name:email,
+                        value:email
+                    }}
+                />
+                
+                <FormInputComponent
+                    label="Password"
+                    inputOptions = {{
+                        type:"password",
+                        required:true,
+                        onChange:handleChange,
+                        name:password,
+                        value:password
+                    }}
+                />
+                
+                <FormInputComponent
+                    label="Password Confirm"
+                    inputOptions = {{
+                        type:"password",
+                        required:true,
+                        onChange:handleChange,
+                        name:password,
+                        value:password
+                    }}
+                />
+                <ButtonComponent
+                    type="submit">
+                    Sing Up
+                </ButtonComponent>
+                
                 {/*<FormInputComponent
                     label="Display Name"
                     type="text"
@@ -90,52 +138,6 @@ const SignUpFormComponent = () => {
                     name="displayName"
                     value={password}
                 />*/}
-                <FormInputComponent
-                    label="Display Name"
-                    inputOptions = {{
-                        type:"text",
-                        required:true,
-                        onChange:handleChange,
-                        name:displayName,
-                        value:displayName
-                    }}
-                />
-                
-                <FormInputComponent
-                    label="Email"
-                    inputOptions = {{
-                        type:"email",
-                        required:true,
-                        onChange:handleChange,
-                        name:displayName,
-                        value:displayName
-                    }}
-                />
-                
-                <FormInputComponent
-                    label="Password"
-                    inputOptions = {{
-                        type:"password",
-                        required:true,
-                        onChange:handleChange,
-                        name:displayName,
-                        value:displayName
-                    }}
-                />
-                
-                <FormInputComponent
-                    label="Password Confirm"
-                    inputOptions = {{
-                        type:"password",
-                        required:true,
-                        onChange:handleChange,
-                        name:displayName,
-                        value:displayName
-                    }}
-                />
-                <ButtonComponent
-                    type="submit"
-                >Sing Up</ButtonComponent>
             </form>
         </div>
     );
