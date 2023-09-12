@@ -1,10 +1,12 @@
-import React from 'react';
+
+
 import {
     auth,
     signInWithGooglePopup,
     signInWithGoogleRedirect,
     createUserDocumentFromAuth
     } from './../../utils/firebase/firebase.utils'
+import SignUpFormComponent from "../../components/sign-up-form/sign-up-form.component";
 
 const SingninComponent = () => {
     const logGoogleUser = async () => {
@@ -17,8 +19,9 @@ const SingninComponent = () => {
         <div>
             <h1>Sign In Page</h1>
             <button onClick={logGoogleUser}>
-                Sing in with Google
+                Sing in with Google PopUp
             </button>
+            <SignUpFormComponent/>
         </div>
     );
 };

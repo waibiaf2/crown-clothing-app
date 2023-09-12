@@ -5,6 +5,12 @@ import {ReactComponent as CrwnLogo} from "../../assets/crown.svg";
 
 import './navigation.style.scss';
 
+/*The Links object...*/
+const links = [
+    {path: '/', text:'Home'},
+    {path: '/shop', text:'Shop'},
+    {path: '/sign-in', text:'Sign In'},
+]
 const NavigationComponent = () => {
     return (
         <Fragment>
@@ -13,9 +19,16 @@ const NavigationComponent = () => {
                     <CrwnLogo className="logo"/>
                 </Link>
                 <div className="nav-links-container">
-                    <Link to="/">Home</Link>
-                    <Link className="nav-link" to="/shop">Shop</Link>
-                    <Link className="nav-link" to="/sign-in">Sign In</Link>
+                    {
+                        links.map(link =>
+                            <Link
+                                key={link.text}
+                                to={link.path}
+                                className="nav-link"
+                            >
+                               {link.text}
+                            </Link>)
+                    }
                 </div>
             </nav>
             <Outlet/>
