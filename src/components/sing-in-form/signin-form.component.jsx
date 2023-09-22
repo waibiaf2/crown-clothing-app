@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import toast from 'react-hot-toast';
+
 
 import {
     signInWithGooglePopup,
     createUserDocumentFromAuth,
-    signInWithGoogleRedirect
+    signInWithGoogleRedirect, signInAuthUserWithEmailAndPassword
 } from '../../utils/firebase/firebase.utils';
 
 /*Components*/
@@ -12,6 +14,7 @@ import ButtonComponent from "../button/button.component";
 
 /*Styles*/
 import './singin-form.styles.scss'
+
 
 const defaultFormFields = {
     email: '',
@@ -23,13 +26,13 @@ const SigninFormComponent = () => {
     const {email, password} = formFields
     
     /*Using google popup*/
-    const SingIn = async () => {
+    const SingInWithGoogle = async () => {
         const {user} = await signInWithGooglePopup()
         const {userDocRef} = await createUserDocumentFromAuth(user);
         console.log(user);
     }
     
-    //TODO: Make signin with google redirect work
+    //TODO: Make authentication with google redirect work
     /*Using google redirect*/
    /* const SingIn = async () => {
         const {user} = await signInWithGoogleRedirect();
@@ -42,14 +45,36 @@ const SigninFormComponent = () => {
         SingIn();
     }, []);*/
     
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        try {
+            const response = await signInAuthUserWithEmailAndPassword(email, password);
+            console.log(response)
+            resetFormFields();
+        } catch (e) {
+            console.log(e);
+            switch (e.code) {
+                case 'auth/wrong-password':
+                    toast.error('Incorrect password for email');
+                    break;
+                case 'auth/user-not-found':
+                    toast.error('User not found, ensure that the email is correct...');
+                    break;
+                default:
+                    toast.error('Something went wrong');
+            }
+        }
+    };
+    
+    const resetFormFields = () => {
+        setFormFields(defaultFormFields);
     };
     
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormFields({...formFields, [name]: value});
-        console.log(formFields);
+        // console.log(formFields);
     };
     
     return (
@@ -67,15 +92,15 @@ const SigninFormComponent = () => {
                 />
                 <FormInputComponent
                     label="Password"
-                    type="text"
+                    type="password"
                     required
                     onChange={handleChange}
                     name="password"
                     value={password}
                 />
                 <div className='buttons-container'>
-                    <ButtonComponent>Sign In</ButtonComponent>
-                    <ButtonComponent buttonType="google" onClick={SingIn}>Sign In With Google</ButtonComponent>
+                    <ButtonComponent onClick={handleSubmit}>Sign In</ButtonComponent>
+                    <ButtonComponent type="button" buttonType="google" onClick={SingInWithGoogle}>Sign In With Google</ButtonComponent>
                 </div>
             </form>
         

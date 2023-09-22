@@ -5,6 +5,7 @@ import {
 } from '../../utils/firebase/firebase.utils'
 
 import './sign-up-form.styles.scss';
+
 import FormInputComponent from "../form-input/form-input.component";
 import ButtonComponent from "../button/button.component";
 
@@ -38,7 +39,6 @@ const SignUpFormComponent = () => {
         
         try {
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
-            // const response = await createAuthUserWithEmailAndPassword(email, password);
             console.log(user);
             await createUserDocumentFromAuth(user, {displayName})
             resetFormFields();
@@ -56,6 +56,7 @@ const SignUpFormComponent = () => {
             <h2>Don't have an account?</h2>
             <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit}>
+              
                 <FormInputComponent
                     label="Display Name"
                     type="text"
@@ -64,7 +65,6 @@ const SignUpFormComponent = () => {
                     name="displayName"
                     value={displayName}
                 />
-                
                 <FormInputComponent
                     label="Email"
                     type="email"
@@ -73,7 +73,6 @@ const SignUpFormComponent = () => {
                     name="email"
                     value={email}
                 />
-                
                 <FormInputComponent
                     label="Password"
                     type="password"
@@ -82,7 +81,6 @@ const SignUpFormComponent = () => {
                     name="password"
                     value={password}
                 />
-                
                 <FormInputComponent
                     label="Confirm Password"
                     type="password"
@@ -92,7 +90,7 @@ const SignUpFormComponent = () => {
                     value={confirmPassword}
                 />
                 <ButtonComponent type="submit">
-                    Sing Up
+                    Sign Up
                 </ButtonComponent>
                 
                 {/* <FormInputComponent

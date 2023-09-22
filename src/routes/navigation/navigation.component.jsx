@@ -9,7 +9,7 @@ import './navigation.style.scss';
 const links = [
     {path: '/', text:'Home'},
     {path: '/shop', text:'Shop'},
-    {path: '/sign-in', text:'Sign In'},
+    {path: '/auth', text:'Sign In'},
 ]
 
 const NavigationComponent = () => {
