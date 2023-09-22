@@ -38,6 +38,7 @@ const SignUpFormComponent = () => {
         
         try {
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
+            // const response = await createAuthUserWithEmailAndPassword(email, password);
             console.log(user);
             await createUserDocumentFromAuth(user, {displayName})
             resetFormFields();
@@ -56,6 +57,45 @@ const SignUpFormComponent = () => {
             <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit}>
                 <FormInputComponent
+                    label="Display Name"
+                    type="text"
+                    required
+                    onChange={handleChange}
+                    name="displayName"
+                    value={displayName}
+                />
+                
+                <FormInputComponent
+                    label="Email"
+                    type="email"
+                    required
+                    onChange={handleChange}
+                    name="email"
+                    value={email}
+                />
+                
+                <FormInputComponent
+                    label="Password"
+                    type="password"
+                    required
+                    onChange={handleChange}
+                    name="password"
+                    value={password}
+                />
+                
+                <FormInputComponent
+                    label="Confirm Password"
+                    type="password"
+                    required
+                    onChange={handleChange}
+                    name="confirmPassword"
+                    value={confirmPassword}
+                />
+                <ButtonComponent type="submit">
+                    Sing Up
+                </ButtonComponent>
+                
+                {/* <FormInputComponent
                     label="Display Name"
                     inputOptions = {{
                         type:"text",
@@ -94,50 +134,15 @@ const SignUpFormComponent = () => {
                         type:"password",
                         required:true,
                         onChange:handleChange,
-                        name:password,
+                        name:confirmPassword,
                         value:password
                     }}
                 />
                 <ButtonComponent
                     type="submit">
                     Sing Up
-                </ButtonComponent>
+                </ButtonComponent>*/}
                 
-                {/*<FormInputComponent
-                    label="Display Name"
-                    type="text"
-                    required
-                    onChange={handleChange}
-                    name="displayName"
-                    value={displayName}
-                />
-                
-                <FormInputComponent
-                    label="Email"
-                    type="email"
-                    required
-                    onChange={handleChange}
-                    name="displayName"
-                    value={email}
-                />
-                
-                <FormInputComponent
-                    label="Password"
-                    type="text"
-                    required
-                    onChange={handleChange}
-                    name="displayName"
-                    value={password}
-                />
-                
-                <FormInputComponent
-                    label="Confirm Password"
-                    type="password"
-                    required
-                    onChange={handleChange}
-                    name="displayName"
-                    value={password}
-                />*/}
             </form>
         </div>
     );

@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
-import FormInputComponent from "../form-input/form-input.component";
+import React, {useState, useEffect} from 'react';
+
 import {
-    signInWithGoogleRedirect,
-    signInWithGooglePopup
+    signInWithGooglePopup,
+    createUserDocumentFromAuth,
+    signInWithGoogleRedirect
 } from '../../utils/firebase/firebase.utils';
 
+/*Components*/
+import FormInputComponent from "../form-input/form-input.component";
 import ButtonComponent from "../button/button.component";
+
+/*Styles*/
 import './singin-form.styles.scss'
 
 const defaultFormFields = {
@@ -13,18 +18,38 @@ const defaultFormFields = {
     password: ''
 }
 
-
 const SigninFormComponent = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {email, password} = formFields
+    
+    /*Using google popup*/
+    const SingIn = async () => {
+        const {user} = await signInWithGooglePopup()
+        const {userDocRef} = await createUserDocumentFromAuth(user);
+        console.log(user);
+    }
+    
+    //TODO: Make signin with google redirect work
+    /*Using google redirect*/
+   /* const SingIn = async () => {
+        const {user} = await signInWithGoogleRedirect();
+        if (user) {
+            const {userDocRef} = await createUserDocumentFromAuth(user);
+            console.log(user);
+        }
+    }
+    useEffect(() => {
+        SingIn();
+    }, []);*/
+    
     const handleSubmit = e => {
         e.preventDefault();
-        
     };
     
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormFields({...formFields, [name]: value});
+        console.log(formFields);
     };
     
     return (
@@ -34,27 +59,23 @@ const SigninFormComponent = () => {
             <form action=''  onSubmit={handleSubmit}>
                 <FormInputComponent
                     label="Email"
-                    inputOptions={{
-                        type:"email",
-                        required:true,
-                        onChange:handleChange,
-                        name:email,
-                        value:email
-                    }}
+                    type="text"
+                    required
+                    onChange={handleChange}
+                    name="email"
+                    value={email}
                 />
                 <FormInputComponent
                     label="Password"
-                    inputOptions={{
-                        type:"Password",
-                        required:true,
-                        onChange:handleChange,
-                        name:password,
-                        value:password
-                    }}
+                    type="text"
+                    required
+                    onChange={handleChange}
+                    name="password"
+                    value={password}
                 />
                 <div className='buttons-container'>
-                    <ButtonComponent buttonType="inverted">Sign In</ButtonComponent>
-                    <ButtonComponent buttonType="google">Sign In With Google</ButtonComponent>
+                    <ButtonComponent>Sign In</ButtonComponent>
+                    <ButtonComponent buttonType="google" onClick={SingIn}>Sign In With Google</ButtonComponent>
                 </div>
             </form>
         

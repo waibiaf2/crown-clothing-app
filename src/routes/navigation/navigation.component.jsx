@@ -11,6 +11,7 @@ const links = [
     {path: '/shop', text:'Shop'},
     {path: '/sign-in', text:'Sign In'},
 ]
+
 const NavigationComponent = () => {
     return (
         <Fragment>
