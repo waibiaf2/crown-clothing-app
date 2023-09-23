@@ -19,7 +19,12 @@ const NavigationComponent = () => {
                 <Link to='/' className='logo-container'>
                     <CrwnLogo className="logo"/>
                 </Link>
-                <div className="nav-links-container">
+                <div className='nav-links-container'>
+                    <Link to='/'  className="nav-link">Home</Link>
+                    <Link to='/shop'  className="nav-link">SHOP</Link>
+                    <Link to='/auth'  className="nav-link">SIGN IN</Link>
+                </div>
+                {/*<div className="nav-links-container">
                     {
                         links.map(link =>
                             <Link
@@ -30,7 +35,7 @@ const NavigationComponent = () => {
                                {link.text}
                             </Link>)
                     }
-                </div>
+                </div>*/}
             </nav>
             <Outlet/>
         </Fragment>
