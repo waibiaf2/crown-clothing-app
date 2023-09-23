@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState} from 'react';
 import toast from 'react-hot-toast';
 
 
@@ -14,7 +14,6 @@ import ButtonComponent from "../button/button.component";
 
 /*Styles*/
 import './singin-form.styles.scss'
-import { UserContext } from '../../contexts/user.context';
 
 
 const defaultFormFields = {
@@ -25,14 +24,10 @@ const defaultFormFields = {
 const SigninFormComponent = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {email, password} = formFields
-    const {setCurrentUser} = useContext(UserContext);
     
     /*Using google popup*/
     const SingInWithGoogle = async () => {
-        const {user} = await signInWithGooglePopup()
-        await createUserDocumentFromAuth(user);
-        setCurrentUser(user);
-        console.log(user);
+        await signInWithGooglePopup()
     }
     
     //TODO: Make authentication with google redirect work
@@ -52,9 +47,8 @@ const SigninFormComponent = () => {
         e.preventDefault();
         
         try {
-            const {user} = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(user);
-            setCurrentUser(user);
+            await signInAuthUserWithEmailAndPassword(email, password);
+           
             resetFormFields();
         } catch (e) {
             console.log(e);

@@ -16,12 +16,10 @@ const links = [
 ]
 
 const NavigationComponent = () => {
-    const {currentUser,setCurrentUser} = useContext(UserContext);
-    // console.log(currentUser);
+    const {currentUser} = useContext(UserContext);
     
     const signOutHandler = async () => {
         await signOutUser();
-        setCurrentUser(null);
     };
     
     return (
