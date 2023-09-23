@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import toast from 'react-hot-toast';
 
 
@@ -14,6 +14,7 @@ import ButtonComponent from "../button/button.component";
 
 /*Styles*/
 import './singin-form.styles.scss'
+import { UserContext } from '../../contexts/user.context';
 
 
 const defaultFormFields = {
@@ -24,11 +25,13 @@ const defaultFormFields = {
 const SigninFormComponent = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {email, password} = formFields
+    const {setCurrentUser} = useContext(UserContext);
     
     /*Using google popup*/
     const SingInWithGoogle = async () => {
         const {user} = await signInWithGooglePopup()
-        const {userDocRef} = await createUserDocumentFromAuth(user);
+        await createUserDocumentFromAuth(user);
+        setCurrentUser(user);
         console.log(user);
     }
     
@@ -49,8 +52,9 @@ const SigninFormComponent = () => {
         e.preventDefault();
         
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(response)
+            const {user} = await signInAuthUserWithEmailAndPassword(email, password);
+            console.log(user);
+            setCurrentUser(user);
             resetFormFields();
         } catch (e) {
             console.log(e);
