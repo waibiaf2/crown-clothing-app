@@ -5,7 +5,8 @@ import toast from 'react-hot-toast';
 import {
     signInWithGooglePopup,
     createUserDocumentFromAuth,
-    signInWithGoogleRedirect, signInAuthUserWithEmailAndPassword
+    signInWithGoogleRedirect,
+    signInAuthUserWithEmailAndPassword
 } from '../../utils/firebase/firebase.utils';
 
 /*Components*/

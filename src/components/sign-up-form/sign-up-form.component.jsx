@@ -41,7 +41,7 @@ const SignUpFormComponent = () => {
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
             console.log(user);
             
-            await createUserDocumentFromAuth(user, {displayName})
+            await createUserDocumentFromAuth(user, {displayName});
             
             resetFormFields();
         } catch (e) {
