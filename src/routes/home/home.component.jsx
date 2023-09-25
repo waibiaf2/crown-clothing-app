@@ -1,5 +1,4 @@
 import React from 'react';
-import {Outlet} from 'react-router-dom'
 
 import DirectoryComponent from "../../components/directory/directory.component";
 

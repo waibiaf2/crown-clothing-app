@@ -49,7 +49,6 @@ const SigninFormComponent = () => {
         
         try {
             await signInAuthUserWithEmailAndPassword(email, password);
-           
             resetFormFields();
         } catch (e) {
             console.log(e);

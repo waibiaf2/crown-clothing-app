@@ -29,7 +29,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-/*Create an instance of google auth provider*/
+/*Create an instance of Google auth provider*/
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
     prompt: "select_account"
