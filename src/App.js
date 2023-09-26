@@ -7,6 +7,7 @@ import NavigationComponent from "./routes/navigation/navigation.component";
 import AuthenticationComponent from "./routes/authentication/authentication.component";
 
 import './App.scss'
+import CheckoutComponent from './routes/checkout/checkout.component';
 
 const App = () => {
     return (
@@ -27,10 +28,10 @@ const App = () => {
                     <Route index element={<HomeComponent/>}/>
                     <Route  path='/shop' element={<ShopComponent/>}/>
                     <Route  path='/auth' element={<AuthenticationComponent/>}/>
+                    <Route  path='/checkout' element={<CheckoutComponent/>}/>
                 </Route>
             </Routes>
         </>
-        
     )
 };
 
