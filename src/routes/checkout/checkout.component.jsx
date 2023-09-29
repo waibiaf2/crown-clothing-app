@@ -1,5 +1,7 @@
 import React, {useContext} from 'react';
+
 import './checkout.styles.scss';
+
 import {CartContext} from "../../contexts/cart.context";
 import CheckoutItemComponent from "../../components/checkout-item/checkout-item.component";
 
@@ -13,6 +15,9 @@ const CheckoutComponent = () => {
 				</div>
 				<div className="header-block">
 					<span>Description</span>
+				</div>
+				<div className="header-block">
+					<span>Quantity</span>
 				</div>
 				<div className="header-block">
 					<span>Price</span>

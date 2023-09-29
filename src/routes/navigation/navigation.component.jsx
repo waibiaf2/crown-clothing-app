@@ -19,7 +19,7 @@ const NavigationComponent = () => {
     const signOutHandler = async () => {
         await signOutUser();
     };
-    
+
     return (
         <Fragment>
             <nav className="navigation">
