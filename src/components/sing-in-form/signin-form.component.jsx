@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import toast from 'react-hot-toast';
-
 
 import {
     signInWithGooglePopup,
@@ -11,12 +10,11 @@ import {
 
 /*Components*/
 import FormInputComponent from "../form-input/form-input.component";
-import ButtonComponent from "../button/button.component";
+import ButtonComponent, {BUTTON_TYPE_CLASSES} from "../button/button.component";
+import {BaseButton} from "../button/button.styles";
 
 /*Styles*/
 import './singin-form.styles.scss'
-
-
 const defaultFormFields = {
     email: '',
     password: ''
@@ -32,17 +30,15 @@ const SigninFormComponent = () => {
     }
     
     //TODO: Make authentication with google redirect work
-    /*Using google redirect*/
-   /* const SingIn = async () => {
-        const {user} = await signInWithGoogleRedirect();
-        if (user) {
-            const {userDocRef} = await createUserDocumentFromAuth(user);
-            console.log(user);
+   /* useEffect(() => {
+        const SingIn = async () => {
+            const {user} = await signInWithGoogleRedirect();
+            if (user) {
+                const {userDocRef} = await createUserDocumentFromAuth(user);
+                console.log(user);
+            }
         }
-    }
-    useEffect(() => {
-        SingIn();
-    }, []);*/
+    },[])*/
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -96,9 +92,17 @@ const SigninFormComponent = () => {
                     name="password"
                     value={password}
                 />
-                <div className='buttons-container'>
-                    <ButtonComponent onClick={handleSubmit}>Sign In</ButtonComponent>
-                    <ButtonComponent type="button" buttonType="google" onClick={SingInWithGoogle}>Sign In With Google</ButtonComponent>
+                <div className="buttons-container">
+                    <ButtonComponent onClick={handleSubmit}>
+                        Sign In
+                    </ButtonComponent>
+                    <ButtonComponent
+                        type='button'
+                        buttonType={BUTTON_TYPE_CLASSES.google}
+                        onClick={SingInWithGoogle}
+                    >
+                        Sign In With Google
+                    </ButtonComponent>
                 </div>
             </form>
         

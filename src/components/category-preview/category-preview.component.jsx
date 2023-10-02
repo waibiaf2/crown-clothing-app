@@ -5,7 +5,6 @@ import './category-preview.styles.scss';
 
 import ProductCard from "../product-card/product-card";
 
-
 const CategoryPreviewComponent = ({title, products}) => {
     return (
         <div className="category-preview-container">
@@ -16,7 +15,9 @@ const CategoryPreviewComponent = ({title, products}) => {
                 {
                     products
                         .filter((_, idx) => idx < 4)
-                        .map( (product) => <ProductCard key={product.id} product={product}/>)
+                        .map(
+                            (product) => <ProductCard key={product.id} product={product}/>
+                        )
                 }
             </div>
         </div>

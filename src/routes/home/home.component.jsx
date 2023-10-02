@@ -35,7 +35,6 @@ const HomeComponent = () => {
         <div>
             <DirectoryComponent categories={categories}/>
         </div>
-    
     );
 };
 
