@@ -126,10 +126,10 @@ export const CartContextProvider = ({children}) => {
 	
 	const value = {
 		isCartOpen,
-		setIsCartOpen,
 		cartItems,
 		cartCount,
 		cartTotal,
+		setIsCartOpen,
 		addItemToCart,
 		removeItemFromCart,
 		clearItemFromCart
