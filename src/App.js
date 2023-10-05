@@ -1,5 +1,8 @@
-import {Routes, Route} from 'react-router-dom';
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
 import {Toaster} from 'react-hot-toast';
+
+import {Routes, Route} from 'react-router-dom';
 
 import './App.scss'
 
@@ -9,7 +12,22 @@ import ShopComponent from "./routes/shop/shop.component";
 import NavigationComponent from "./routes/navigation/navigation.component";
 import AuthenticationComponent from "./routes/authentication/authentication.component";
 
+import {setCurrentUser} from "./store/user/user.action";
+import {createUserDocumentFromAuth, onAuthStateChangedListener} from "./utils/firebase/firebase.utils";
+
 const App = () => {
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        const unsubscribe = onAuthStateChangedListener((user) => {
+            if (user) {
+                createUserDocumentFromAuth(user);
+            }
+            dispatch(setCurrentUser(user));
+        });
+        return unsubscribe;
+    }, [dispatch]);
+    
     return (
         <>
             <Toaster
