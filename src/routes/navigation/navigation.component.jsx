@@ -8,12 +8,13 @@ import CartIconComponent from '../../components/cart-icon/cart-icon.component';
 import CartDropdownComponent from '../../components/cart-dropdown/cart-dropdown.component';
 
 import { CartContext } from '../../contexts/cart.context';
+import {selectCurrentUser} from "../../store/user/user.selector";
 
 import {ReactComponent as CrwnLogo} from "../../assets/crown.svg";
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 const NavigationComponent = () => {
-    const currentUser =  useSelector((state) => state.user.currentUser)
+    const currentUser =  useSelector(selectCurrentUser);
     const {isCartOpen} = useContext(CartContext);
 
     return (

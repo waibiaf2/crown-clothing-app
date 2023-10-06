@@ -6,7 +6,7 @@ import {Routes, Route} from 'react-router-dom';
 
 import './App.scss'
 
-import {setCurrentUser} from "./store/user/user.action";
+import {setCurrentUser} from "./store/user/user.actions";
 import {createUserDocumentFromAuth, onAuthStateChangedListener} from "./utils/firebase/firebase.utils";
 import CheckoutComponent from './routes/checkout/checkout.component';
 import HomeComponent from "./routes/home/home.component";

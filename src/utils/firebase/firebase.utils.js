@@ -88,6 +88,7 @@ export const db = getFirestore();
         ]
     }
 }*/
+
 export const getCategoriesAndDocuments = async () =>{
     const collectionRef = collection(db, 'categories');
     const q = query(collectionRef);
