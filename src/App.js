@@ -7,12 +7,17 @@ import {Routes, Route} from 'react-router-dom';
 import './App.scss'
 
 import {setCurrentUser} from "./store/user/user.actions";
-import {createUserDocumentFromAuth, onAuthStateChangedListener} from "./utils/firebase/firebase.utils";
+import {
+    createUserDocumentFromAuth,
+    getCategoriesAndDocuments,
+    onAuthStateChangedListener
+} from "./utils/firebase/firebase.utils";
 import CheckoutComponent from './routes/checkout/checkout.component';
 import HomeComponent from "./routes/home/home.component";
 import ShopComponent from "./routes/shop/shop.component";
 import NavigationComponent from "./routes/navigation/navigation.component";
 import AuthenticationComponent from "./routes/authentication/authentication.component";
+import {setCategoriesMap} from "./store/categories/category.actions";
 
 const App = () => {
     const dispatch = useDispatch();

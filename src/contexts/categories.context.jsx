@@ -1,3 +1,4 @@
+/*
 import React, {createContext, useEffect, useReducer, useState} from 'react';
 
 import {getCategoriesAndDocuments} from "../utils/firebase/firebase.utils";
@@ -32,9 +33,10 @@ const categoriesReducer = (state, action) => {
 
 
 export const CategoriesProvider = ({children}) => {
-	const [{categoriesMap}, dispatch] = useReducer(categoriesReducer, INITIAL_STATE);
+	// const [{categoriesMap}, dispatch] = useReducer(categoriesReducer, INITIAL_STATE);
 	
-	useEffect(() =>{
+	
+/!*	useEffect(() =>{
 		const getCategoriesMap = async () => {
 			const categoryMap = await getCategoriesAndDocuments();
 			updateCategoriesMap(categoryMap);
@@ -48,7 +50,7 @@ export const CategoriesProvider = ({children}) => {
 				categoriesMap
 			})
 		);
-	}
+	}*!/
 
 	const value = {categoriesMap};
 	
@@ -59,3 +61,4 @@ export const CategoriesProvider = ({children}) => {
 	);
 };
 
+*/
