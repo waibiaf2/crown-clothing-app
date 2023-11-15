@@ -9,7 +9,6 @@ import CategoryComponent from "../category/category.component";
 import {getCategoriesAndDocuments} from "../../utils/firebase/firebase.utils";
 import {setCategories} from "../../store/categories/category.actions";
 
-
 const ShopComponent = () => {
     const dispatch = useDispatch();
     
