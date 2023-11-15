@@ -12,11 +12,12 @@ import {selectCurrentUser} from "../../store/user/user.selector";
 
 import {ReactComponent as CrwnLogo} from "../../assets/crown.svg";
 import { signOutUser } from '../../utils/firebase/firebase.utils';
+import {selectCartIsOpen} from "../../store/cart/cart.selector";
 
 const NavigationComponent = () => {
     const currentUser =  useSelector(selectCurrentUser);
-    const {isCartOpen} = useContext(CartContext);
-    
+    // const {isCartOpen} = useContext(CartContext);
+	const isCartOpen = useSelector(selectCartIsOpen);
     return (
         <Fragment>
             <NavigationContainer>
