@@ -17,7 +17,6 @@ import HomeComponent from "./routes/home/home.component";
 import ShopComponent from "./routes/shop/shop.component";
 import NavigationComponent from "./routes/navigation/navigation.component";
 import AuthenticationComponent from "./routes/authentication/authentication.component";
-import {setCategoriesMap} from "./store/categories/category.actions";
 
 const App = () => {
     const dispatch = useDispatch();

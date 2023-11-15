@@ -9,11 +9,12 @@ import {selectCategoriesMap} from "../../store/categories/category.selector";
 
 const CategoryComponent = () => {
     const {category} = useParams();
+    console.log('render/re-rendering category component');
     const categoriesMap = useSelector(selectCategoriesMap);
-    console.log('From Categories component', categoriesMap);
     const [products, setProducts] = useState(categoriesMap[category]);
-
+    
     useEffect(() => {
+        console.log('Effect fired calling setProducts');
         setProducts(categoriesMap[category])
     }, [category, categoriesMap]);
 
