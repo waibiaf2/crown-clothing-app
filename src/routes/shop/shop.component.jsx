@@ -6,14 +6,14 @@ import './shop.styles.scss';
 
 import CategoriesPreviewComponent from "../categories-preview/categories-preview.component";
 import CategoryComponent from "../category/category.component";
-import {fetchCategoriesAsync} from "../../store/categories/category.actions";
+import {fetchCategoriesStart} from "../../store/categories/category.actions";
 
 const ShopComponent = () => {
     const dispatch = useDispatch();
     
     useEffect(() =>{
         const getCategoriesMap =  () => {
-			dispatch(fetchCategoriesAsync());
+			dispatch(fetchCategoriesStart());
         }
         getCategoriesMap();
     },[]);

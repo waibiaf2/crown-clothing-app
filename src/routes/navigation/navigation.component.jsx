@@ -1,23 +1,25 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment } from 'react';
 import {Outlet, Link} from "react-router-dom";
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from "react-redux";
 
 import {LogoContainer, NavigationContainer, NavLink, NavLinks} from "./navigation.styles";
 
 import CartIconComponent from '../../components/cart-icon/cart-icon.component';
 import CartDropdownComponent from '../../components/cart-dropdown/cart-dropdown.component';
 
-import { CartContext } from '../../contexts/cart.context';
 import {selectCurrentUser} from "../../store/user/user.selector";
 
 import {ReactComponent as CrwnLogo} from "../../assets/crown.svg";
-import { signOutUser } from '../../utils/firebase/firebase.utils';
+// import { signOutUser } from '../../utils/firebase/firebase.utils';
 import {selectCartIsOpen} from "../../store/cart/cart.selector";
+import {signOutStart} from "../../store/user/user.actions";
 
 const NavigationComponent = () => {
+	const dispatch = useDispatch();
     const currentUser =  useSelector(selectCurrentUser);
-    // const {isCartOpen} = useContext(CartContext);
 	const isCartOpen = useSelector(selectCartIsOpen);
+	const signOutUser = () => dispatch(signOutStart());
+		
     return (
         <Fragment>
             <NavigationContainer>
@@ -28,7 +30,7 @@ const NavigationComponent = () => {
                     <NavLink to='/shop' >SHOP</NavLink>
                     {
                         currentUser ?
-                            (<NavLink as="span" onClick={signOutUser} >
+                            (<NavLink to='#' as="span" onClick={signOutUser} >
                                 SIGN OUT
                             </NavLink>) :
                             (<NavLink to='/auth' >SIGN IN</NavLink>)
@@ -38,24 +40,6 @@ const NavigationComponent = () => {
                 {isCartOpen && <CartDropdownComponent/>}
             </NavigationContainer>
             <Outlet/>
-            {/*<nav className="navigation">
-                <Link to='/' className='logo-container'>
-                    <CrwnLogo className="logo"/>
-                </Link>
-                <div className='nav-links-container'>
-                    <Link to='/'  className="nav-link">Home</Link>
-                    <Link to='/shop' className="nav-link">SHOP</Link>
-                    {
-                        currentUser ?
-                            (<span className='nav-link' onClick={signOutUser}>SIGN OUT</span>) :
-                            <Link to='/auth' className="nav-link">SIGN IN</Link>
-                    }
-                    <CartIconComponent/>
-                </div>
-                
-                { isCartOpen && <CartDropdownComponent/> }
-            </nav>
-            <Outlet/>*/}
         </Fragment>
     );
 };

@@ -6,12 +6,7 @@ import {Routes, Route} from 'react-router-dom';
 
 import './App.scss'
 
-import {setCurrentUser} from "./store/user/user.actions";
-import {
-    createUserDocumentFromAuth,
-    getCategoriesAndDocuments,
-    onAuthStateChangedListener
-} from "./utils/firebase/firebase.utils";
+import {checkUserSession} from "./store/user/user.actions";
 import CheckoutComponent from './routes/checkout/checkout.component';
 import HomeComponent from "./routes/home/home.component";
 import ShopComponent from "./routes/shop/shop.component";
@@ -22,13 +17,7 @@ const App = () => {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        const unsubscribe = onAuthStateChangedListener((user) => {
-            if (user) {
-                createUserDocumentFromAuth(user);
-            }
-            dispatch(setCurrentUser(user));
-        });
-        return unsubscribe;
+		dispatch(checkUserSession());
     }, []);
     
     return (

@@ -50,44 +50,10 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 /*Configuration to signup with an email and a password*/
-export const createAuthUserWithEmailAndPassword = async (email,password) =>{
-    if(!email || !password) return;
-    
-    return await createUserWithEmailAndPassword(auth,email,password)
-}
-
-/*Sign in a user using and email and password*/
-export const signInAuthUserWithEmailAndPassword = async (email,password) =>{
-    if(!email || !password) return;
-    
-    return await signInWithEmailAndPassword(auth,email,password)
-}
-
-/*A signout method from firebase -> signs out the current user*/
-export const signOutUser = async () => await signOut(auth);
-
-/*An auth observer to watch the changes happening in the singleton method from firebase/auth */
-export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
 
 /*Initiating a database instance for firestore*/
 export const db = getFirestore();
 
-/*{
-    hats: {
-        title: 'Hats',
-        items: [
-            {},
-            {}
-        ]
-    },
-    sneakers: {
-        title: 'Sneakers',
-        items: [
-            {},
-            {}
-        ]
-    }
-}*/
 
 export const getCategoriesAndDocuments = async () =>{
     const collectionRef = collection(db, 'categories');
@@ -139,7 +105,38 @@ export const createUserDocumentFromAuth = async (
             console.log('Error creating user', e);
         }
     }
-    return userDocRef;
+    return userSnapShot;
 }
 
+export const createAuthUserWithEmailAndPassword = async (email,password) =>{
+	if(!email || !password) return;
+	
+	return await createUserWithEmailAndPassword(auth, email, password);
+}
 
+/*Sign in a user using and email and password*/
+export const signInAuthUserWithEmailAndPassword = async (email,password) =>{
+	if(!email || !password) return;
+	
+	return await signInWithEmailAndPassword(auth, email, password);
+}
+
+/*A signout method from firebase -> signs out the current user*/
+export const signOutUser = async () => await signOut(auth);
+
+/*An auth observer to watch the changes happening in the singleton method from firebase/auth */
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = onAuthStateChanged(
+			auth,
+			(userAuth) => {
+				unsubscribe();
+				resolve(userAuth);
+			},
+			reject
+		);
+	})
+}
